@@ -40,8 +40,47 @@ body {
   background-color: white;
 }
 
+.decs-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  justify-content: center;
+}
+
+#color-desc {
+  position: absolute;
+  top: 1em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#color-desc .cell {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin: 0 5px 0 15px;
+}
+
+#color-desc .desc {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+#color-desc 
+  .goal-direction {
+    border: 2px dashed green;
+  }
+
+
 .wall {
-  background-color: black;
+  background: url(../img/wall.png);
+}
+
+.wall:nth-child(2n) {
+  transform: rotate(90deg);
 }
 
 .current, .current-all {

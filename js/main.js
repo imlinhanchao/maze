@@ -184,10 +184,8 @@
 
   // Function to check if the player has won
   function checkWin() {
-    // Get the current player cell
-    const currentPlayerCell = document.querySelector('.current');
     // Get the row and column of the current player cell
-    const [currentPlayerRow, currentPlayerCol] = currentPlayerCell.id.split('-').slice(1);
+    const [currentPlayerRow, currentPlayerCol] = [playerRow, playerCol];
     // Check if the player is in the goal cell
     if (parseInt(currentPlayerRow) === maze.length - 1 && parseInt(currentPlayerCol) === maze[0].length - 1) {
       return true;
