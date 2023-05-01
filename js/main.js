@@ -256,6 +256,7 @@
         // Display the result
         document.getElementById('result').innerText = 'YOU GOT!';
         localStorage.setItem('size', size + 2);
+        localStorage.removeItem('maze');
         document.getElementById('next').style.display = 'block';
 
         // Reset the maze
