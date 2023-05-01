@@ -127,15 +127,15 @@
         else if (row === currentPlayerRow && col === currentPlayerCol) {
           cell.classList.add('current');
         }
+        // Add the begin class if the cell is the player's begin cell
         else if (row === 0 && col === 0) {
           cell.classList.add('begin');
         }
-        else cell.style.backgroundColor = `rgba(0,0,255,${Math.min(1, (mazeCount[`${row}-${col}`] || 0) / 20)})`;
-
-        if (row === maze.length - 1 && col === maze[0].length - 1) {
+        // Add the goal class if the cell is the player's goal cell
+        else if (row === maze.length - 1 && col === maze[0].length - 1) {
           cell.classList.add('goal');
         }
-
+        else cell.style.backgroundColor = `rgba(0,0,255,${Math.min(1, (mazeCount[`${row}-${col}`] || 0) / 20)})`;
 
         cell.onclick = function () {
           if (row === playerRow && col === playerCol) {
