@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: 'Silkscreen', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* CSS styles for the maze */
+#wrapper, #maze {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+#maze {
+  display: none;
+}
+
+#wrapper {
+  width: 60vw;
+  max-width: 300px;
+}
+
+#level {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.cell {
+  max-width: 100px;
+  max-height: 100px;
+  width: 20vw;
+  height: 20vw;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.wall {
+  background-color: black;
+}
+
+.current, .current-all {
+  background-color: yellow;
+}
+
+.goal {
+  background-color: green;
+}
+
+.begin {
+  background-color: red;
+}
+
+.goal-direction {
+  border: 4px dashed green;
+}
+
+#result {
+  text-align: center;
+  font-size: 3rem;
+  color: red;
+}
+#next {
+  display: none;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 1em;
+}

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Silkscreen';
+    src: url('Silkscreen.eot');
+    src: url('Silkscreen.eot?#iefix') format('embedded-opentype'),
+        url('Silkscreen.woff2') format('woff2'),
+        url('Silkscreen.woff') format('woff'),
+        url('Silkscreen.ttf') format('truetype'),
+        url('Silkscreen.svg#Silkscreen') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
