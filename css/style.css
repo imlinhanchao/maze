@@ -69,8 +69,7 @@ body {
   display: none;
   position: absolute;
   bottom: 0;
-  left: 50%;
-  right: 50%;
+  width: 100%;
   padding: 1em;
-  margin：auto;
+  text-align: center;
 }
