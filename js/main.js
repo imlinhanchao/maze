@@ -35,7 +35,7 @@
       startY++;
     }
 
-    const mazeMap = new Array(widthLimit + 1).fill(0).map(() => new Array(heightLimit + 1).fill(block));
+    let mazeMap = new Array(widthLimit + 1).fill(0).map(() => new Array(heightLimit + 1).fill(block));
 
     const blockPos = [];
     let targetX = startX, targetY = startY;
@@ -93,8 +93,27 @@
       blockPos.splice(blockIndex, 3);
     }
 
+    // mazeMap = markGoldenBox(mazeMap);
     localStorage.setItem('maze', JSON.stringify(mazeMap));
     return mazeMap;
+  }
+  
+  // 填充宝箱
+  function markGoldenBox(maze) {
+    const widthLimit = maze.length - 1, heightLimit = maze[0].length - 1;
+    let goldenBoxCount = 0;
+    for (let row = 0; row <= widthLimit; row++) {
+      for (let col = 0; col <= heightLimit; col++) {
+        if (maze[row][col] === 1) continue;
+        let isGolden = Math.floor(Math.random() * 50) === 0;
+        if (isGolden) {
+          maze[row][col] = 2;
+          goldenBoxCount++;
+        }
+        if (goldenBoxCount >= size / 6) break;
+      }
+    }
+    return maze;
   }
 
   // 画出 player 周围 9 个格子的迷宫
@@ -123,19 +142,24 @@
         if (!maze[row] || maze[row][col] === undefined || maze[row][col] === 1) {
           cell.classList.add('wall');
         }
-        // Add the current class if the cell is the player's current cell
-        else if (row === currentPlayerRow && col === currentPlayerCol) {
-          cell.classList.add('current');
+        else {
+          if (maze[row][col] === 2) {
+            cell.classList.add('golden-box');
+          }
+          // Add the current class if the cell is the player's current cell
+          // Add the goal class if the cell is the player's goal cell
+          if (row === maze.length - 1 && col === maze[0].length - 1) {
+            cell.classList.add('goal');
+          }
+          else if (row === currentPlayerRow && col === currentPlayerCol) {
+            cell.classList.add('current');
+          }
+          // Add the begin class if the cell is the player's begin cell
+          else if (row === 0 && col === 0) {
+            cell.classList.add('begin');
+          }
+          else cell.style.backgroundColor = `rgba(0,0,255,${Math.min(1, (mazeCount[`${row}-${col}`] || 0) / 20)})`;
         }
-        // Add the begin class if the cell is the player's begin cell
-        else if (row === 0 && col === 0) {
-          cell.classList.add('begin');
-        }
-        // Add the goal class if the cell is the player's goal cell
-        else if (row === maze.length - 1 && col === maze[0].length - 1) {
-          cell.classList.add('goal');
-        }
-        else cell.style.backgroundColor = `rgba(0,0,255,${Math.min(1, (mazeCount[`${row}-${col}`] || 0) / 20)})`;
 
         cell.onclick = function () {
           if (row === playerRow && col === playerCol) {
@@ -217,9 +241,8 @@
 
   // Move the player and check for win on each move
   function movePlayer(direction) {
-    // Remove the player's current position
-    const currentPlayerCell = document.querySelector('.current-all');
-
+    // Get the current player cell
+    const currentPlayerCell = document.getElementById(`cell-${playerRow}-${playerCol}`);
     // Move the player
     let newRow, newCol;
     switch (direction) {
@@ -241,12 +264,15 @@
         break;
     }
 
-    if (newRow >= 0 && newRow < maze.length && newCol >= 0 && newCol < maze[0].length && maze[newRow][newCol] === 0) {
-      if (currentPlayerCell) currentPlayerCell.classList?.remove('current-all');
+    if (newRow >= 0 && newRow < maze.length && newCol >= 0 && newCol < maze[0].length && maze[newRow][newCol] !== 1) {
       // Update the player's position
       playerRow = newRow;
       playerCol = newCol;
+
       mazeCount[`${newRow}-${newCol}`] = (mazeCount[`${newRow}-${newCol}`] || 0) + 1;
+
+      openGoldenBox(currentPlayerCell);
+      
       // Redraw the maze
       drawMaze(maze);
       // Check if the player has won
@@ -264,6 +290,13 @@
       }
       saveMaze();
     }
+  }
+
+  function openGoldenBox(mazeBlock) {
+    if (maze[playerRow][playerCol] !== 2) return;
+    mazeBlock.classList.remove('golden-box');
+    mazeBlock.classList.add('golden-box-open');
+    maze[playerRow][playerCol] = 3;
   }
 
   // Save the maze status to local storage
