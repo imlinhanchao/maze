@@ -6,7 +6,10 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  font-family: 'Silkscreen', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Silkscreen', 'Fusion Pixel monospaced', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #131415;
+  color: #fff;
+  font-size: 16px;
 }
 /* CSS styles for the maze */
 #wrapper, #maze {
@@ -22,12 +25,17 @@ body {
 #wrapper {
   width: 60vw;
   max-width: 300px;
+  border: 5px solid #131415;
+  background: #FFF;
+  box-shadow: 0 0 30px 10px #000;
+  margin: 20px;
 }
 
 #level {
   font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: bold;
+  text-shadow: 0 0 10px #999;
 }
 
 .cell {
@@ -35,33 +43,56 @@ body {
   max-height: 100px;
   width: 20vw;
   height: 20vw;
-  border: 1px solid black;
+  border: 1px solid #131415;
   box-sizing: border-box;
   background-color: white;
+}
+
+.desc-list {
+  display: flex;
+  width: 70vw;
+  max-width: 350px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .decs-item {
   display: flex;
   align-items: center;
   margin: 5px 0;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 50%;
 }
 
 #color-desc {
   position: absolute;
-  top: 1em;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin: auto;
+  background: rgba(0,0,0, .8);
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  z-index: 10;
+  left: -100vw;
+  cursor: pointer;
+  transition: all .5s;
 }
 
 #color-desc .cell {
   width: 1em;
   height: 1em;
   display: inline-block;
-  margin: 0 5px 0 15px;
+  margin: 0 5px 0;
+  border-color: #FFF;
+}
+
+#color-desc .wall {
+  background-size: 50%;
 }
 
 #color-desc .desc {
@@ -69,18 +100,22 @@ body {
   white-space: nowrap;
 }
 
-#color-desc 
-  .goal-direction {
-    border: 2px dashed green;
-  }
+#color-desc .goal-direction {
+  border: 2px dashed green;
+}
+
+#color-desc p {
+  max-width: 350px;
+  width: 70vw;
+  margin: 0 auto 10px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
 
 
 .wall {
-  background: url(../img/wall.png);
-}
-
-.wall:nth-child(2n) {
-  transform: rotate(90deg);
+  background: #000 url(../img/wall.png);
 }
 
 .current, .current-all {
@@ -102,14 +137,30 @@ body {
 #result {
   text-align: center;
   font-size: 3rem;
-  color: red;
+  color: #d31f12;
 }
+
 #next {
   display: none;
   position: absolute;
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%;
   padding: 1em;
   text-align: center;
-  white-spacing: nowarp;
+  white-space: nowrap;
+}
+
+.toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 5px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
 }

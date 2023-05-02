@@ -14,35 +14,47 @@
 </head>
 
 <body>
-    <div id="color-desc">
-        <div class="decs-item">
-            <div class="begin cell"></div>
-            <div class="desc">Start</div>
-        </div>
-        <div class="decs-item">
-            <div class="goal cell"></div>
-            <div class="desc">End</div>
-        </div>
-        <div class="decs-item">
-            <div class="cell"></div>
-            <div class="desc">Path</div>
-        </div>
-        <div class="decs-item">
-            <div class="wall cell"></div>
-            <div class="desc">Wall</div>
-        </div>
-        <div class="decs-item">
-            <div class="current cell"></div>
-            <div class="desc">You</div>
-        </div>
-        <div class="decs-item">
-            <div class="goal-direction cell"></div>
-            <div class="desc">End Dirt</div>
-        </div>
-        <div class="decs-item">
-            <div class="cell" style="background: linear-gradient(to right, rgba(0,0,255, 0.01), rgba(0,0,255))"></div>
-            <div class="desc">Path Passed</div>
-        </div>
+    <div id="color-desc" onclick="this.style.left = '-100vw'">
+        <h1>How to play?</h1>
+        <p>1. ➡️ 使用方向键或单击方块移至迷宫终点。</p>
+        <p>2. <span class="goal-direction cell"></span>&nbsp;表示终点的大致方向。</p>
+        <p>3. 🏆 移动到终点时，就可以进入下一关，每个关卡迷宫宽度会增加 2 格。</p>
+        <p>4. 🔍 探索过程中，你可以随时退出，探索进度是实时保存的。</p>
+        <p>5. 🚶 已走过的路将会从淡紫色逐渐变为蓝色，走过次数越多越蓝。</p>
+        <p>⬜ 不同方块的含义：</p>
+        <section class="desc-list">
+            <div class="decs-item">
+                <div class="begin cell"></div>
+                <div class="desc">起点</div>
+            </div>
+            <div class="decs-item">
+                <div class="goal cell"></div>
+                <div class="desc">终点</div>
+            </div>
+            <div class="decs-item">
+                <div class="cell"></div>
+                <div class="desc">迷宫の路</div>
+            </div>
+            <div class="decs-item">
+                <div class="wall cell"></div>
+                <div class="desc">迷宫の墙</div>
+            </div>
+            <div class="decs-item">
+                <div class="current cell"></div>
+                <div class="desc">你的位置</div>
+            </div>
+            <div class="decs-item">
+                <div class="goal-direction cell"></div>
+                <div class="desc">终点的方向</div>
+            </div>
+            <div class="decs-item">
+                <div class="cell" style="background: linear-gradient(to right, white, rgba(0,0,255))"></div>
+                <div class="desc">已走过的路</div>
+            </div>
+        </section>
+    </div>
+    <div class="toolbar">
+        <a href="javascript:void(0)" onclick="document.getElementById('color-desc').style.left = '0'">? HELP</a>
     </div>
     <div id="level"></div>
     <div id="wrapper"></div>
