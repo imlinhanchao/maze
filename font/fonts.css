@@ -13,7 +13,6 @@
 
 @font-face {
     font-family: 'Fusion Pixel monospaced';
-    src: url('Fusion-Pixel-monospaced-Regular.eot');
     src: local('Fusion Pixel monospaced'), local('Fusion-Pixel-monospaced-Regular'),
         url('Fusion-Pixel-monospaced-Regular.woff2') format('woff2'),
         url('Fusion-Pixel-monospaced-Regular.woff') format('woff'),
